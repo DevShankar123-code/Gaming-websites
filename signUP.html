@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signUPCSS.css">
+    <title>Signup Page</title>
+    <link rel="icon" type="image/x-icon" href="file:///E:/Images/Full_logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="file:///E:/Images/signin.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="container">
+        <form class="signup-form" id="signup-form" action="#" method="post">
+            <span class="icon"><ion-icon name="add-outline"></ion-icon></span>
+            <h2>Create Account</h2>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="Confirm Password">Confirm Password</label>
+                <input type="Password" id="Password" name="Password" required>
+            </div>
+            <div class="remember">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+            <p class="footer-text"><a href="#">Forgot Password?</a></p>
+            <p class="footer-text">Already have an account? 
+            <a href="signin.html">Sign In</a></p>
+            <div class="social-signin">
+                 <p>Also Sign up with:</p> 
+                 <button class="btn google-signup">Google</button> 
+                 <button class="btn facebook-signup">Facebook</button> 
+                <button class="btn twitter-signup">Twitter</button> </div>
+            </div>
+         </form>
+    </div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- signUP.html -->
+<script>
+document.getElementById('signup-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = {
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+    };
+
+    const response = await fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+    alert(result.message);
+});
+</script>
+
+</body>
+</html>

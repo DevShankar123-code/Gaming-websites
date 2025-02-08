@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In Form</title>
+    <link rel="icon" type="image/x-icon" href="file:///E:/Images/Full_logo.jpg">
+    <link rel="stylesheet" href="SignINcss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="video-background">
+         <video autoplay muted loop>
+              <source src="file:///E:/Images/signin5.mp4">
+         </video>
+    </div>
+    <main class="container">
+        <form class="signin-form" id="signin-form" action="#" method="post">
+            <h2>Sign In</h2>
+            <div class="input-group">
+                <label for="email"><i class="fas fa-user"></i> Email/Mobile/Username</label>
+                <input type="email" id="email" name="email" required aria-label="Email,Mobile, or Username">
+            </div>
+            <div class="input-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" required aria-label="Password">
+            </div>
+            <button type="submit"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+            <p class="signup-link">Don't have an account? 
+            <a href="signUP.html">Sign Up</a></p>
+            <div class="links">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </form>
+    </main>
+<!-- signIN.html -->
+<script>
+document.getElementById('signin-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+    };
+
+    const response = await fetch('http://localhost:3000/signin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+    alert(result.message);
+});
+</script>
+</body>
+</html>
